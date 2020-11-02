@@ -3,10 +3,12 @@ package TP;
 public class Jugador {
 	private String nombre;
 	private Mazo mazo;
-	
-	public Jugador(String nombre){
+	private Estrategia estrategia;
+
+	public Jugador(String nombre,Estrategia estrategia){
 		this.nombre = nombre;
-		this.mazo= new Mazo();
+		this.estrategia = estrategia;
+		this.mazo = new Mazo();
 	}
 	
 	public String getNombre(){
@@ -17,7 +19,9 @@ public class Jugador {
 		this.mazo.addCartas(c);
 	}
 
-
+	public void setEstrategia(Estrategia estrategia) {
+		this.estrategia = estrategia;
+	}
 	public void verCartas(){
 		mazo.verMazo();
 	}
@@ -32,10 +36,12 @@ public class Jugador {
 	public int cantidadDeCartas(){
 		return mazo.cantCartas();
 	}
-	public Atributo getAtributoRandom(Carta c){
-		
-		return c.getAtributoRandom();
-	}
+	
+	public Atributo elegirAtributo(Carta carta) {
+	 	
+ 		return this.estrategia.elegirAtributo(carta);
+ 	}
+ 	
 	public void deletePrimeraCarta(){
 		mazo.deletePrimeraCarta();
 	}

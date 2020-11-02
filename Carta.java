@@ -1,10 +1,14 @@
 package TP;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 public class Carta {
 	private String nombre;
 	private ArrayList<Atributo>atributos;
+	private Pocima pocima;
+
 	
 	public Carta(String nombre){
 		this.nombre=nombre;
@@ -17,6 +21,9 @@ public class Carta {
 
 	public String getNombre() {
 		return nombre;
+	}
+	public Pocima getPocima() {
+		return this.pocima;
 	}
 
 	public ArrayList<Atributo> getAtributos(){
@@ -101,5 +108,17 @@ public class Carta {
 		};
 		return retorno;
 	}
-	
+
+	public void setPocima(Pocima pocima) {
+		this.pocima = pocima;
+	}
+	public Atributo getAtributoMayor(){
+		ArrayList<Atributo> aux = new ArrayList<>(this.atributos);
+
+		Collections.sort(aux);
+		Atributo retorno = aux.get(0);
+
+		return retorno;
+		
+	}
 }

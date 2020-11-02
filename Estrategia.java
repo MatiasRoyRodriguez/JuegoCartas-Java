@@ -1,7 +1,7 @@
 package TP;
 
-public abstract interface Estrategia {
+public interface Estrategia {
 	
-	public abstract int elegirAtributo(Carta carta);
+	public Atributo elegirAtributo(Carta carta);
 
 }

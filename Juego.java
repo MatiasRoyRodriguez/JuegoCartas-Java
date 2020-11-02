@@ -1,18 +1,30 @@
 package TP;
 
+import java.util.ArrayList;
+import java.util.Random;
+
 public class Juego {
 	private Mazo mazo;
 	private Jugador j1;
 	private Jugador j2;
 	private int rondasMax;
 	private int rondasJugadas=0;
-	public Juego(Mazo mazo,int rondasMax){
-		this.j1 = new Jugador("Cacha");
-		this.j2 = new Jugador("Matt");
+	private ArrayList<Pocima> pocimas;
+
+	
+	
+	
+	public Juego(Mazo mazo,Jugador j1,Jugador j2,int rondasMax){
+		this.j1 = j1;
+		this.j2 = j2;
 		this.mazo= mazo;
 		this.rondasMax = rondasMax;
+		this.pocimas = new ArrayList<>();
+
 	}
-	
+	public void agregarPocima(Pocima pocima) {
+		this.pocimas.add(pocima);
+	}
 	public int getRondasMax(){
 		return this.rondasMax;
 	}
@@ -23,7 +35,7 @@ public class Juego {
 		//Nos aseguramos de que el mazo tenga por lo menos 2 cartas 
 		if(mazo.mazoHabilParaJugar()){
 			repartirCartas();
-
+			repartirPocimas();
 			comienzoJuego();
 			
 		}
@@ -48,7 +60,13 @@ public class Juego {
 		}
 		
 	}
-	
+	private void repartirPocimas() {
+		
+		for (Pocima pocima : this.pocimas) {
+			Random random = new Random();	
+			mazo.setPocima(pocima, random.nextInt(this.mazo.getCartas().size())); 
+		}
+	}
 	public void comienzoJuego( ){
 		
 		Jugador ganadorRonda = j1;
@@ -63,11 +81,11 @@ public class Juego {
 			Carta c1 = j1.obtenerPrimera();
 			Carta c2 = j2.obtenerPrimera();
 			if(ganadorRonda.equals(j1)){
-				 atributo = ganadorRonda.getAtributoRandom(c1);
+				 atributo = ganadorRonda.elegirAtributo(c1);
 					juego+= "El jugador "+ j1.getNombre() +" selecciona competir por el atributo " + atributo.getNombre() +"\n";
 
 			}else{
-				 atributo = ganadorRonda.getAtributoRandom(c2);
+				 atributo = ganadorRonda.elegirAtributo(c2);
 					juego+="El jugador "+ j2.getNombre() +" selecciona competir por el atributo " + atributo.getNombre() +"\n";
 
 			};
@@ -129,7 +147,33 @@ public class Juego {
 	}
 	
 	
-	
+	 public static void main(String[] args) {
+	      /*  String mazoPath = "./superheroes.json";
+	        VisorMazo.mostrarMazo(mazoPath); */
+	    	String mazoPath = "./superheroes.json";
+	    	Mazo m1 = new Mazo(mazoPath);
+	    	
+	    	
+	    	
+	    	EstrategiaAmbicioso ambicioso = new EstrategiaAmbicioso();
+			EstrategiaObstinado obstinado = new EstrategiaObstinado();
+			EstrategiaTimbero timbero = new EstrategiaTimbero();
+	    	
+	    	
+	    	
+	    	Jugador j1 = new Jugador("Cacha", obstinado);
+	    	Jugador j2 = new Jugador("Matt", ambicioso);
+
+	    	Juego juego = new Juego(m1,j1,j2,25);
+
+	    	
+	    	m1.verMazo();
+	    	System.out.println("------------------------------------");
+	    	m1.limpiarMazo();
+	    	
+	    	juego.jugar();
+	    	
+	    }
 	
 	
 	

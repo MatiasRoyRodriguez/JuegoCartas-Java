@@ -14,10 +14,13 @@ import javax.json.JsonReader;
 public class Mazo {
 	private ArrayList<Carta> cartas;
 	
-	public Mazo(){
+	public Mazo(String mazoPath){
 		this.cartas = new ArrayList<>();
+		this.crearMazo(mazoPath);
 	}
-	
+	public Mazo() {
+		cartas = new ArrayList<>();
+	}
 	public void addCartas(Carta c){
 		this.cartas.add(c);
 	}
@@ -119,5 +122,12 @@ public class Mazo {
 	public void deletePrimeraCarta(){
 		this.cartas.remove(0);
 	}
-	
+	public ArrayList<Carta> getCartas() {
+
+		return this.cartas;
+	}
+
+	public void setPocima(Pocima pocima, int indice) {
+		this.cartas.get(indice).setPocima(pocima);		
+	}
 }

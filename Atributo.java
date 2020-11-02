@@ -1,6 +1,6 @@
 package TP;
 
-public class Atributo {
+public class Atributo implements Comparable<Atributo>{
 	private String nombre;
 	private int valor;
 	
@@ -10,7 +10,9 @@ public class Atributo {
 		this.valor=valor;
 	}
 
-
+	public void setValor(double d) {
+		 this.valor = (int) d;
+	}
 	public String getNombre() {
 		return nombre;
 	}
@@ -36,8 +38,16 @@ public class Atributo {
 		}
 		
 	}
-	
-	
+	@Override
+	public int compareTo(Atributo a){
+		if(this.getValor()<a.getValor()) {
+			return 1;
+		}else if(this.getValor()>a.getValor()) {
+			return -1;
+		}else {
+			return 0;
+		}
+	}
 	
 	
 	

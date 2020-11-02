@@ -39,22 +39,7 @@ public class VisorMazo {
         }
     }
 
-    public static void main(String[] args) {
-      /*  String mazoPath = "./superheroes.json";
-        VisorMazo.mostrarMazo(mazoPath); */
-    	Mazo m1 = new Mazo();
-    	Juego juego = new Juego(m1,2500);
-
-    	String mazoPath = "./superheroes.json";
-    	m1.crearMazo(mazoPath);
-    	
-    	m1.verMazo();
-    	System.out.println("------------------------------------");
-    	m1.limpiarMazo();
-    	
-    	juego.jugar();
-    	
-    }
+   
 
 }
 
