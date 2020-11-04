@@ -17,7 +17,11 @@ public class PocimaPorcentaje extends Pocima {
 		this.atributo = atributo;
 	}
 
-
+	public PocimaPorcentaje(String nombre, double valorIncremental) {
+		super(nombre);
+		this.valorIncremental = valorIncremental;
+		this.atributo = null;
+	}
 
 
 	@Override

@@ -1,7 +1,6 @@
 package TP;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 
 public class Carta {
@@ -10,11 +9,22 @@ public class Carta {
 	private Pocima pocima;
 
 	
+	
 	public Carta(String nombre){
 		this.nombre=nombre;
 		this.atributos = new ArrayList<>();
 	}
 	
+	public void setAtributos(ArrayList<Atributo>atributos){
+		ArrayList<Atributo> aux = new ArrayList<Atributo>();
+		
+		for(Atributo elem:atributos){
+			Atributo copia = new Atributo(elem.getNombre(), elem.getValor());
+			aux.add(copia);
+		}
+		this.atributos.addAll(aux);
+	}
+		
 	public void addAtributo(Atributo a){
 		this.atributos.add(a);
 	}
@@ -35,49 +45,22 @@ public class Carta {
 		int numeroRandom = (int)(Math.random()*atributos.size());
 		Atributo atributo= this.atributos.get(numeroRandom);
 		
-
 		return atributo;
 	}
 	
 	
-	public String getAtributosString(){
-		ArrayList<Atributo> aux = new ArrayList<Atributo>(atributos);
-		
-		String auxx = "";
-		
-		for(int i=0; i<aux.size();i++){
-			auxx += aux.get(i).toString();
-			;
-		}
-		return auxx;
-		
-		
-	}
+
 	public int getCantAtributos(){
-		return this.atributos.size();
-	}
-	public int cantAtributos(){
 		return this.atributos.size();
 	}
 	
 	@Override
 	public String toString() {
-		return  nombre + getAtributosString() + "";
+		return  this.nombre ;
 	}
 	
-	public boolean compareTo(Carta c){
-		return false;
-	}
-	//TODO: CAPAS HAY QUE BORRAR ESTO
-	public Atributo getAtributo(String nombre){
-		Atributo retorno = null;
-		for(Atributo elem:atributos){
-			if(elem.equals(nombre)){
-				retorno= elem;
-			}
-		}
-		return retorno;
-	}
+	
+	
 	public int getValorAtributo(Atributo a){
 		int retorno = 0;
 
@@ -120,5 +103,9 @@ public class Carta {
 
 		return retorno;
 		
+	}
+	public void aplicarPocima() {
+		
+		this.pocima.aplicar(this.atributos);
 	}
 }

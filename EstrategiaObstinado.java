@@ -17,9 +17,9 @@ public class EstrategiaObstinado implements Estrategia {
 	@Override
 	public Atributo elegirAtributo(Carta carta) {
 
-		//Aca vemos si ya esta obstinado o no con una carta en especifico 
+		//Aca vemos si ya esta obstinado o no con un atributo en especifico 
 		if(this.obstinado == false) {
-			int numeroRandom = (int)(Math.random()*carta.cantAtributos());
+			int numeroRandom = (int)(Math.random()*carta.getCantAtributos());
 			Atributo atributo= carta.getAtributos().get(numeroRandom);	
 			this.atributo = atributo;
 			this.obstinado = true;

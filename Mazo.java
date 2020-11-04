@@ -40,9 +40,6 @@ public class Mazo {
 		Carta aux = this.cartas.get(i);
 		return aux;
 	}
-	public void eliminarCarta(){
-		this.cartas.remove(0);
-	}
 	
 	public  void crearMazo(String jsonFile) {
         //URL url = getClass().getResource(jsonFile);
@@ -73,13 +70,6 @@ public class Mazo {
                     c.addAtributo(a);
                 }
                 
-
-              
-               
-                
-                
-             //   System.out.println(nombreCarta+"\t\t\t"+atributosStr);
-                
                
             }
 
@@ -91,11 +81,7 @@ public class Mazo {
         }
     } 
 	
-	public void verMazo(){
-		for(int i=0;i<cartas.size();i++){
-			System.out.println( cartas.get(i).toString());
-		}
-	}
+	
 	
 	
 	public void limpiarMazo(){
@@ -116,15 +102,16 @@ public class Mazo {
 	
 	
 	public boolean mazoHabilParaJugar(){
-		
+		//Como minimo debe tener 2 cartas para poder jugar una ronda
 		return (this.cartas.size()>=2);
 	}
 	public void deletePrimeraCarta(){
 		this.cartas.remove(0);
 	}
 	public ArrayList<Carta> getCartas() {
+		ArrayList<Carta> aux = new ArrayList<>(this.cartas);
 
-		return this.cartas;
+		return aux;
 	}
 
 	public void setPocima(Pocima pocima, int indice) {

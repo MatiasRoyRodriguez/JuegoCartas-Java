@@ -1,5 +1,6 @@
 package TP;
 
+
 public class Jugador {
 	private String nombre;
 	private Mazo mazo;
@@ -22,13 +23,11 @@ public class Jugador {
 	public void setEstrategia(Estrategia estrategia) {
 		this.estrategia = estrategia;
 	}
-	public void verCartas(){
-		mazo.verMazo();
-	}
+	
 	
 	public Carta obtenerPrimera(){
 		
-		return this.mazo.devolverCarta(0);
+		return this.mazo.getPrimeraCarta();
 	}
 	public boolean quedanCartas(){
 		return mazo.cantCartas()>0;
@@ -45,4 +44,6 @@ public class Jugador {
 	public void deletePrimeraCarta(){
 		mazo.deletePrimeraCarta();
 	}
+	
+	
 }
